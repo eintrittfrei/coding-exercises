@@ -9,8 +9,8 @@ function init() {
 
   // Create the deck by looping though the arrays, creating a new object for each card 
 
-  const cards = []
-  function deck() {
+  const cards = new Array()
+  function newDeck() {
 
 
     for (let i = [0]; i < suits.length; i++) {
@@ -24,7 +24,7 @@ function init() {
 
 
   }
-  deck()
+  newDeck()
 
   // Shuffle cards
   // reading on shuffle seem the 'Fisher Yates Modern Shuffle Algorithm'  
@@ -51,44 +51,46 @@ function init() {
 
   }
 
-  const result = cards.shuffle() // now applying the shuffle constructor to the array 
+  const shuffledDeck = cards.shuffle() // now applying the shuffle constructor to the array 
 
-  console.log(result)
+  console.log(shuffledDeck)
 
   
   const pageElement = document.querySelector('.stack') // grabbing the html element
-  pageElement.textContent = JSON.stringify(result) // updating the textContent (html) with the result as JSON.stringify 
+  pageElement.textContent = JSON.stringify(shuffledDeck) // updating the textContent (html) with the result as JSON.stringify 
 
   // Creating the players Sam and Dealer as classes  
+  
+  let players = new Array()
+  function createPlayers(num) {
+    players = new Array()
+    for ( let i = 1; i <= num; i++) {
+      const hand = new Array()
+      const player = { Name: 'Player' + i, ID: i, Points: 0, Hand: hand }
+      players.push(player)
+    }
+  }
 
-  const player = {
-    name: 'Sam',
-    hand: [],
-    score: 0
-  }
-  const player2 = {
-    name: 'Dealer',
-    hand: [],
-    score: 0
-  }
+  createPlayers(2)
+  console.log('players', players)
+
+ 
 
 
   // give each player two cards from the shuffled deck. 
 
-  const dealPlayer = result.splice(0, 2)
-  player.hand = dealPlayer
+  function dealHands() {
 
-  const dealPlayer2 = result.splice(0, 2)
-  player2.hand = dealPlayer2
+    for (let i = 0; i < 2; i++) {
+      for (let x = 0; x < players.length; x++) {
+        const card = shuffledDeck.pop()
+        console.log('card', card)
+        players[x].Hand.push(card, x)
+      }
+    }
+  }
+  console.log('hands', dealHands())
 
-  console.log('current hands', player.hand, player2.hand)
-
-  const handElement = document.querySelector('.hands1')
-  const handElement2 = document.querySelector('.hands2')
-  handElement.textContent = JSON.stringify(player.hand[1].Suit)
-  handElement2.textContent = JSON.stringify(player2.hand[1].Suit)
-
-  console.log('player', player.hand)
 
   // Determine the score for each player and dealer -- running total constructor 
 
@@ -98,13 +100,8 @@ function init() {
   // if suit is letter J, Q, K then points x += 10 counter score 
   // if suit is A then points counter += 11
 
-  player.hand.forEach(function(suit) {
-    // console.log('suit', + index)
-    Object.keys(suit).forEach(function(prop) {
-      console.log('each', prop + ' = ' + suit[prop])
-    })
-  })
-
+  
+  
   
  
 
