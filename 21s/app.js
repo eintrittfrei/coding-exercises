@@ -89,8 +89,9 @@ function init() {
       }
     }
   }
-  console.log('hands', dealHands())
 
+  dealHands()
+    
 
   // Determine the score for each player and dealer -- running total constructor 
 
@@ -101,11 +102,38 @@ function init() {
   // if suit is A then points counter += 11
 
   
+  // function sum(obj) {
+  //   let sum = 0
+    
+  //   // if (points === '2', '3', '4', '5', '6', '7', '8', '9', '10') {
+  //   for ( const points in obj ) {
+  //     if ( obj.hasOwnProperty( points )) {
+  //       sum += parseFloat( obj[points] )
+  //       console.log(sum)
+  //     }
+  //     return sum
+      
+  //   }
+  // }
+    
+  
+  // const summed = sum( players )
+  // console.log('sum ' + summed )
+ 
   
   
  
 
-
+  for (let i = 0; i < players.length; i++) {
+    const value = players[i]
+    console.log('VALUE', value)
+    for (let j = 0; j < players[i].length; j++) {
+      const innerValue = players[i][j]
+      console.log('innerV', innerValue)
+    }
+    
+    
+  }
 
 
 
