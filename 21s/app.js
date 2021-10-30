@@ -12,17 +12,13 @@ function init() {
   const cards = new Array()
   function newDeck() {
 
-
     for (let i = [0]; i < suits.length; i++) {
       for (let x = [0]; x < values.length; x++) {
         const card = { Value: values[x], Suit: suits[i] }
-
         cards.push(card)
       }
     }
     return cards
-
-
   }
   newDeck()
 
@@ -47,8 +43,6 @@ function init() {
       this[i] = temp
     }
     return this
-
-
   }
 
   const shuffledDeck = cards.shuffle() // now applying the shuffle constructor to the array 
@@ -84,7 +78,7 @@ function init() {
     for (let i = 0; i < 2; i++) {
       for (let x = 0; x < players.length; x++) {
         const card = shuffledDeck.pop()
-        console.log('card', card)
+        // console.log('card', card)
         players[x].Hand.push(card, x)
       }
     }
@@ -130,6 +124,7 @@ function init() {
     for (let j = 0; j < players[i].length; j++) {
       const innerValue = players[i][j]
       console.log('innerV', innerValue)
+      console.log(innerValue.Hand[0])
     }
     
     
